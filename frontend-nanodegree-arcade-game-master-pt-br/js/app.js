@@ -7,12 +7,14 @@ class Enemy {
     }
 
     update(dt) {
-
+        
     }
 
     render() {
-        this.x = 100;
-        this.y = 200;
+
+        var posicaoY = [50, 140, 220];
+        this.x = 0
+        this.y = 220;
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
@@ -57,24 +59,28 @@ class Player {
     }
 
     update(dt) {
-
+        
     }
 
     render() {
-        this.x = 400;
+        this.x = 200;
         this.y = 400;
         ctx.drawImage(Resources.get(this.jogador), this.x, this.y);
     }
 
-    handleInput() {
-        if(keycode === "left"){
-
-        } else if (keycode === "up") {
-
-        } else if (keycode === "right"){
-
-        } else {
-
+    handleInput(tecla) {
+        if(tecla === "left") {
+            this.x -= 101;
+            console.log(tecla)
+        } else if (tecla === "up"){
+            this.y -= 171;
+            console.log(tecla)
+        } else if (tecla === "right"){
+            this.x += 101;
+            console.log(tecla)
+        } else if (tecla === "down"){
+            this.y += 171;
+            console.log(tecla)
         }
     }
 }
@@ -87,6 +93,13 @@ class Player {
 var player = new Player();
 var allEnemies = [];
 
+var enemy_a = new Enemy();
+var enemy_b = new Enemy();
+var enemy_c = new Enemy();
+
+allEnemies.push(enemy_a);
+// allEnemies.push(enemy_b);
+// allEnemies.push(enemy_c);
 
 // Isto reconhece cliques em teclas e envia as chaves para seu
 // jogador. método handleInput(). Não é preciso mudar nada.
