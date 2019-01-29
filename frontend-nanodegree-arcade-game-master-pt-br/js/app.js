@@ -18,24 +18,8 @@ class Enemy {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+   }
 
-    
-}
-
-
-/* // Atualize a posição do inimigo, método exigido pelo jogo
-// Parâmetro: dt, um delta de tempo entre ticks
-Enemy.prototype.update = function(dt) {
-    // Você deve multiplicar qualquer movimento pelo parâmetro
-    // dt, o que garantirá que o jogo rode na mesma velocidade
-    // em qualquer computador.
-};
-
-*/
-
-// Agora, escreva sua própria classe de jogador
-// Esta classe exige um método update(), 
-// um render() e um handleInput().
 
 class Player {
     constructor() {
@@ -47,6 +31,7 @@ class Player {
     }
 
     update() {
+        
     }
 
     render() {
@@ -59,13 +44,13 @@ class Player {
             this.x -=101;
             //console.log(this.x)
         } else if (tecla === "up"){
-            this.y -= 82;
+            this.y -= 83;
             //console.log(this.y)
         } else if (tecla === "right"){
             this.x += 101;
            //console.log(this.x)
         } else if (tecla === "down"){
-            this.y += 82;
+            this.y += 83;
             //console.log(this.y)
         } else {
             return;
@@ -83,13 +68,13 @@ class Player {
             this.x = 402;
         }
 
-
+        checkCollision();
     }
-
 
 }
 
 function checkCollision() {
+    
 }
 
 // Represente seus objetos como instâncias.
@@ -107,7 +92,7 @@ var enemy_c = new Enemy(0, enemy_y, velocidade);
 
 allEnemies.push(enemy_a);
 allEnemies.push(enemy_b);
-allEnemies.push(enemy_c)
+allEnemies.push(enemy_c);
 
 
 // Isto reconhece cliques em teclas e envia as chaves para seu
