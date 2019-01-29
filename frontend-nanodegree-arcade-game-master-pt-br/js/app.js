@@ -1,4 +1,5 @@
 // Inimigos que nosso jogador deve evitar
+
 class Enemy {
     constructor(x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
@@ -23,9 +24,7 @@ class Enemy {
 
 class Player {
     constructor() {
-        this.jogador = "images/char-boy.png";
-        this.width = 101;
-        this.height = 171;
+        this.sprite = "images/char-boy.png";
         this.x = 200;
         this.y = 400;
     }
@@ -35,7 +34,7 @@ class Player {
     }
 
     render() {
-        ctx.drawImage(Resources.get(this.jogador), this.x, this.y);
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
     handleInput(tecla) {
@@ -57,7 +56,7 @@ class Player {
         }
 
         //Evita que o personagem ultrapasse as bordas do canvas na horizontal
-        if(this.y < -10 || this.y > 400) {
+        if(this.y < -50 || this.y > 400) {
             this.y = 400;
         }
 
