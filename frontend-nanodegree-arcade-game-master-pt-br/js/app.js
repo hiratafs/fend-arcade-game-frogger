@@ -1,11 +1,12 @@
 // Inimigos que nosso jogador deve evitar
 class Enemy {
-    constructor(x,y) {
+    constructor(x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
-        this.width = 101;
-        this.height = 171;
+        var posicaoY = [50, 130, 210];
+        this.y = posicaoY[Math.floor(Math.random() * 3)];
         this.x = x;
-        this.y = y;
+        this.velocidade = velocidade;
+        
     }
 
     update(dt) {
@@ -13,10 +14,6 @@ class Enemy {
     }
 
     render() {
-
-        var posicaoY = [50, 140, 220];
-        this.x = 0
-        this.y = 220;
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
@@ -41,38 +38,57 @@ class Player {
         this.jogador = "images/char-boy.png";
         this.width = 101;
         this.height = 171;
+        this.x = 200;
+        this.y = 400;
     }
 
-    update(dt) {
+    update() {
         
     }
 
     render() {
-        this.x = 200;
-        this.y = 400;
         ctx.drawImage(Resources.get(this.jogador), this.x, this.y);
     }
 
     handleInput(tecla) {
+        this.tecla = tecla;
         if(tecla === "left") {
             this.x -=101;
-            console.log(tecla)
+            //console.log(this.x)
         } else if (tecla === "up"){
-            this.y -= 171;
-            console.log(tecla)
+            this.y -= 82;
+            //console.log(this.y)
         } else if (tecla === "right"){
             this.x += 101;
-            console.log(tecla)
+           //console.log(this.x)
         } else if (tecla === "down"){
-            this.y += 171;
-            console.log(tecla)
+            this.y += 82;
+            //console.log(this.y)
         } else {
             return;
         }
+
+        //Evita que o personagem ultrapasse as bordas do canvas na horizontal
+        if(this.y < -10 || this.y > 400) {
+            this.y = 400;
+        }
+
+        // Evita que o personagem ultrapasse as bordas do canvas na horizontal
+        if(this.x < -2) {
+            this.x = 0;
+        } else if (this.x > 402){
+            this.x = 402;
+        }
+
+
     }
+
+
 }
 
-
+function checkCollision() {
+    //ope
+}
 
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
