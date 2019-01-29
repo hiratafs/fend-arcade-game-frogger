@@ -1,6 +1,6 @@
 // Inimigos que nosso jogador deve evitar
 
-class Enemy {
+class Enemy  {
     constructor(x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
         this.y = y;
@@ -83,7 +83,7 @@ var player = new Player();
 var allEnemies = [];
 var velocidade = 100 + Math.floor(Math.random() * 400)
 var posicaoY = [50, 130, 210];
-var enemy_y = posicaoY[Math.floor(Math.random() * 3)];
+var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
 
 var enemy_a = new Enemy(0, enemy_y, velocidade);
 var enemy_b = new Enemy(0, enemy_y, velocidade);
