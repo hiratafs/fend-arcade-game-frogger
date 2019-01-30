@@ -23,10 +23,10 @@ class Enemy  {
 
 
 class Player {
-    constructor() {
+    constructor(x, y = 400) {
         this.sprite = "images/char-boy.png";
-        this.x = 200;
-        this.y = 400;
+        this.x = x;
+        this.y = y;
     }
 
     update() {
@@ -55,7 +55,7 @@ class Player {
             return;
         }
 
-        checkCollision();
+        
     }
 
 }
@@ -67,12 +67,14 @@ function checkCollision() {
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
 // Coloque o objeto do jogador numa variável chamada jogador.
-var player = new Player();
+
 var allEnemies = [];
 var velocidade = 100 + Math.floor(Math.random() * 400)
+var posicaoX = [0, 101, 202, 303, 404];
 var posicaoY = [50, 130, 210];
-var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
-
+var player_x = posicaoX[Math.floor(Math.random() * 4)]
+//var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
+var player = new Player(player_x);
 var enemy_a = new Enemy(0, 50, velocidade);
 var enemy_b = new Enemy(0, 130, velocidade);
 var enemy_c = new Enemy(0, 210, velocidade);
@@ -94,3 +96,7 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function reachingWater() {
+    //if
+}
