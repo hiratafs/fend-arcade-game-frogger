@@ -39,32 +39,20 @@ class Player {
 
     handleInput(tecla) {
         this.tecla = tecla;
-        if(tecla === "left") {
+        if(tecla === "left" && this.x > 2) {
             this.x -=101;
             //console.log(this.x)
-        } else if (tecla === "up"){
+        } else if (tecla === "up" && this.y > -10){
             this.y -= 83;
             //console.log(this.y)
-        } else if (tecla === "right"){
+        } else if (tecla === "right" && this.x < 402){
             this.x += 101;
            //console.log(this.x)
-        } else if (tecla === "down"){
+        } else if (tecla === "down" && this.y < 400){
             this.y += 83;
             //console.log(this.y)
         } else {
             return;
-        }
-
-        //Evita que o personagem ultrapasse as bordas do canvas na horizontal
-        if(this.y < -50 || this.y > 400) {
-            this.y = 400;
-        }
-
-        // Evita que o personagem ultrapasse as bordas do canvas na horizontal
-        if(this.x < -2) {
-            this.x = 0;
-        } else if (this.x > 402){
-            this.x = 402;
         }
 
         checkCollision();
@@ -85,9 +73,9 @@ var velocidade = 100 + Math.floor(Math.random() * 400)
 var posicaoY = [50, 130, 210];
 var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
 
-var enemy_a = new Enemy(0, enemy_y, velocidade);
-var enemy_b = new Enemy(0, enemy_y, velocidade);
-var enemy_c = new Enemy(0, enemy_y, velocidade);
+var enemy_a = new Enemy(0, 50, velocidade);
+var enemy_b = new Enemy(0, 130, velocidade);
+var enemy_c = new Enemy(0, 210, velocidade);
 
 allEnemies.push(enemy_a);
 allEnemies.push(enemy_b);
