@@ -19,7 +19,7 @@ class Enemy  {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    checkCollision() {
+    checkCollision(player) {
         if(this.x < player.x + player.width &&
             this.x + this.width > player.x &&
             this.y < player.y + player.height &&
