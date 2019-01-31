@@ -10,24 +10,20 @@ class Enemy  {
 
     update(dt) {
         this.x += velocidade * dt;
+        checkCollision(this, player);
+
         if(this.x > 505) {
             this.x = -50;
         }
+        
     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    checkCollision(player) {
-        if(this.x < player.x + player.width &&
-            this.x + this.width > player.x &&
-            this.y < player.y + player.height &&
-            this.y + this.height > player.y) {
-            console.log("Bateu!");
-        }
-    }
 }
+var pontos = 0;
 
 //Classe para construir o objeto Player
 class Player {
@@ -38,7 +34,6 @@ class Player {
     }
 
     update() {
-        
     }
 
     render() {
@@ -63,12 +58,23 @@ class Player {
         } else {
             return;
         }
-   
+  
     }
 
     
+    
 }
 
+
+function checkCollision(charA, charB) {
+        if(charA.x + 101 > charB.x &&
+            charA.x < charB.x + 101 &&
+            charA.y < charB.y + 83 &&
+            charA.y + 83 > charB.y){
+            console.log("Bateu!");
+            return;
+        }
+    } 
 
 
 
@@ -94,16 +100,12 @@ for(var i = 0; i < 3; i++) {
 }
 
 
-//var velocidade = 101 + Math.floor(Math.random() * 400)
-
 //Variáveis em array para a posição X do player
 var posicaoX = [0, 101, 202, 303, 404];
 
-// Variáveis em array para a posição Y dos enemies
-//var posicaoY = [50, 130, 210];
-
 // Determina de maneira randômica a posição X do player 
 var player_x = posicaoX[Math.floor(Math.random() * 4)];
+
 //var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
 var player = new Player(player_x);
 
@@ -120,9 +122,4 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-function reachingWater() {
-    if(this.y === -10) {
-        console.log("Você venceu!");
-    }
-}
 
