@@ -1,5 +1,4 @@
 // Inimigos que nosso jogador deve evitar
-
 class Enemy  {
     constructor(x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
@@ -10,6 +9,9 @@ class Enemy  {
 
     update(dt) {
         this.x += velocidade * dt;
+
+        /*Confere se o objeto criado a partir deste construtor
+        colide com o objeto construído pela classe Player */
         checkCollision(this, player);
 
         if(this.x > 505) {
@@ -23,7 +25,7 @@ class Enemy  {
     }
 
 }
-var pontos = 0;
+
 
 //Classe para construir o objeto Player
 class Player {
@@ -34,6 +36,7 @@ class Player {
     }
 
     update() {
+
     }
 
     render() {
@@ -47,13 +50,13 @@ class Player {
             this.x -=101;
             //console.log(this.x)
         } else if (tecla === "up" && this.y > -10){
-            this.y -= 83;
+            this.y -= 85;
             //console.log(this.y)
         } else if (tecla === "right" && this.x < 402){
             this.x += 101;
            //console.log(this.x)
         } else if (tecla === "down" && this.y < 400){
-            this.y += 83;
+            this.y += 85;
             //console.log(this.y)
         } else {
             return;
@@ -65,36 +68,29 @@ class Player {
     
 }
 
+var pontos = 0;
 
-function checkCollision(charA, charB) {
-        if(charA.x + 101 > charB.x &&
-            charA.x < charB.x + 101 &&
-            charA.y < charB.y + 83 &&
-            charA.y + 83 > charB.y){
-            console.log("Bateu!");
-            return;
+function checkCollision(enemy, hero) {
+        if(enemy.x + 102 > hero.x &&
+            enemy.x < hero.x + 101 &&
+            enemy.y < hero.y + 85 &&
+            enemy.y + 86 > hero.y){
+                pontos += 50;
+                
+            
         }
     } 
-
 
 
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
 // Coloque o objeto do jogador numa variável chamada jogador.
-
 var allEnemies = [];
 
-/* var enemy_a = new Enemy(0, 50, velocidade);
-var enemy_b = new Enemy(0, 130, velocidade);
-var enemy_c = new Enemy(0, 210, velocidade);
-
-allEnemies.push(enemy_a);
-allEnemies.push(enemy_b);
-allEnemies.push(enemy_c);  */
-
-for(var i = 0; i < 3; i++) {
+//For loop para criar as instâncias dos inimigos e inseri-los na allEnemies
+for(var i = 0; i < 4; i++) {
     var velocidade = 101 + Math.floor(Math.random() * 400);
-    var coordY = [50, 130, 210];
+    var coordY = [60, 140, 220];
     var posicaoY = coordY[Math.floor(Math.random() * 3)]
     allEnemies.push(new Enemy(0, posicaoY, velocidade));
 }
@@ -105,8 +101,6 @@ var posicaoX = [0, 101, 202, 303, 404];
 
 // Determina de maneira randômica a posição X do player 
 var player_x = posicaoX[Math.floor(Math.random() * 4)];
-
-//var enemy_y = posicaoY[Math.floor(Math.random() * 2)];
 var player = new Player(player_x);
 
 // Isto reconhece cliques em teclas e envia as chaves para seu
