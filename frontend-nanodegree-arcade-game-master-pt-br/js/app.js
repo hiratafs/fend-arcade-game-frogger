@@ -3,7 +3,7 @@ class Enemy  {
     constructor(x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
         this.y = y;
-        this.x = x;
+        this.x = 0;
         this.velocidade = velocidade;
     }
 
@@ -12,12 +12,18 @@ class Enemy  {
 
         /*Confere se o objeto criado a partir deste construtor
         colide com o objeto construído pela classe Player */
-        checkCollision(this, player);
 
         if(this.x > 505) {
             this.x = -50;
         }
         
+        if(this.x + 102 > player.x &&
+            this.x < player.x + 101 &&
+            this.y < player.y + 85 &&
+            this.y + 86 > player.y){
+                player.y = 400;
+                player.x = 200;
+        } 
     }
 
     render() {
@@ -36,7 +42,6 @@ class Player {
     }
 
     update() {
-
     }
 
     render() {
@@ -64,22 +69,12 @@ class Player {
   
     }
 
-    
-    
 }
 
 var pontos = 0;
 
-function checkCollision(enemy, hero) {
-        if(enemy.x + 102 > hero.x &&
-            enemy.x < hero.x + 101 &&
-            enemy.y < hero.y + 85 &&
-            enemy.y + 86 > hero.y){
-                pontos += 50;
-                
-            
-        }
-    } 
+
+
 
 
 // Represente seus objetos como instâncias.
