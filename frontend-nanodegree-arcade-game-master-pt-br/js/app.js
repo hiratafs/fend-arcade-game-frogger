@@ -76,7 +76,7 @@ class Player {
 
 }
 
-
+//Reseta o game quando há colisão entre enemy e player
 function resetGame() {
     allEnemies = [];
     for(var i = 0; i < 4; i++) {
@@ -84,6 +84,8 @@ function resetGame() {
         var posicaoY = coordY[Math.floor(Math.random() * 3)]
         allEnemies.push(new Enemy(0, posicaoY, Math.floor(Math.random() * 400 + 100)));
     }
+
+    //console.log("Acabou!")
 }
 
 
