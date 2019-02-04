@@ -1,14 +1,14 @@
 // Inimigos que nosso jogador deve evitar
-class Enemy  {
-    constructor(x, y, velocidade) {
+function Enemy (x, y, velocidade) {
         this.sprite = "images/enemy-bug.png";
         this.y = y;
         this.x = 0;
         this.velocidade = velocidade;
-    }
 
-    update(dt) {
-        this.x += velocidade * dt;
+}
+
+Enemy.prototype.update = function (dt) {
+        this.x += this.velocidade * dt;
 
         /*Confere se o objeto criado a partir deste construtor
         colide com o objeto construído pela classe Player */
@@ -23,13 +23,14 @@ class Enemy  {
             this.y + 86 > player.y){
                 player.y = 400;
                 player.x = 200;
+                resetGame();
         } 
-    }
+}
 
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
 
+
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 
@@ -42,6 +43,10 @@ class Player {
     }
 
     update() {
+        if(this.y <= -10) {
+            this.y = 400;
+            resetGame();
+        }
     }
 
     render() {
@@ -71,9 +76,15 @@ class Player {
 
 }
 
-var pontos = 0;
 
-
+function resetGame() {
+    allEnemies = [];
+    for(var i = 0; i < 4; i++) {
+        var coordY = [60, 140, 220];
+        var posicaoY = coordY[Math.floor(Math.random() * 3)]
+        allEnemies.push(new Enemy(0, posicaoY, Math.floor(Math.random() * 400 + 100)));
+    }
+}
 
 
 
@@ -84,10 +95,9 @@ var allEnemies = [];
 
 //For loop para criar as instâncias dos inimigos e inseri-los na allEnemies
 for(var i = 0; i < 4; i++) {
-    var velocidade = 101 + Math.floor(Math.random() * 400);
     var coordY = [60, 140, 220];
     var posicaoY = coordY[Math.floor(Math.random() * 3)]
-    allEnemies.push(new Enemy(0, posicaoY, velocidade));
+    allEnemies.push(new Enemy(0, posicaoY, Math.floor(Math.random() * 400 + 100)));
 }
 
 
