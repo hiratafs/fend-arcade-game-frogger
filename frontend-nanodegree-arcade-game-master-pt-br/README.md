@@ -1,6 +1,11 @@
-frontend-nanodegree-arcade-game
-===============================
+#Frogger Game
+##Nanodegree Udacity Web Front-End Avançado
 
-Os alunos devem usar esta [rubrica](https://review.udacity.com/#!/rubrics/436/view) para fazer uma autoavaliação de seu projeto. Certifique-se de que as funções que escreveu sejam **orientadas a objetos** - tanto funções de classe (como Player e Enemy) como funções de protótipo de classe, como Enemy.prototype.checkCollisions, e que a palavra-chave 'this' seja usada de maneira correta em suas funções de classe e de protótipo de classe para se referir ao objeto que faz a chamada da função. Certifique-se, também, de que o arquivo **readme.md** esteja atualizado com suas instruções, tanto sobre rodar quanto sobre como jogar o fliperama clássico.
+Primeiro projeto do Nanodegree de Web Front-End Avançado. Consiste em utilizar os recursos já fornecidos pelo curso para fazer um clone do jogo Frogger, construído com javascript orientado a objetos.
 
-Para ver instruções detalhadas sobre como começar, confira este [guia](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+### Como Jogar
+Baixe o arquivo zipado ou clone o jogo em sua máquina. Abra o arquivo index.html no navegador e use as setas do teclado para movimentar o jogador. O objetivo é fazer o personagem atravessar o caminho em meio aos inimigos (os bugs) e chegar perto da água. O jogo reinicia quando o jogador colide com o inimigo. 
+
+### Recursos deste Jogo
+Git
+Visual Code
