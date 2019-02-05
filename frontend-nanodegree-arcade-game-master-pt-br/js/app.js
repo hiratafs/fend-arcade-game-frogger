@@ -39,13 +39,15 @@ class Player {
         this.sprite = "images/char-boy.png";
         this.x = x;
         this.y = y;
+        this.points = 50;
     }
 
     update() {
         if(this.y <= -5) {
             this.y = 400;
-            elevaDificuldade();
-        }
+            this.points += 10;
+            console.log(this.points);
+         }
     }
 
     render() {
@@ -75,11 +77,6 @@ class Player {
 
 }
 
-function elevaDificuldade() {
-    allEnemies.forEach( function() {
-        Enemy.velocidade += 10;
-    })
-}
 
 //Reseta o game quando há colisão entre enemy e player
 function resetGame() {
