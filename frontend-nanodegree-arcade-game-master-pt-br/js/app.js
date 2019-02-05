@@ -23,6 +23,7 @@ Enemy.prototype.update = function (dt) {
             this.y + 86 > player.y){
                 player.y = 400;
                 player.x = 200;
+                
                 resetGame();
             } 
 }
@@ -46,6 +47,8 @@ class Player {
         if(this.y <= -5) {
             this.y = 400;
             this.points += 10;
+            var pontos = document.querySelector(".pontos");
+            pontos.innerHTML = this.points;
             console.log(this.points);
          }
     }
@@ -80,6 +83,7 @@ class Player {
 
 //Reseta o game quando há colisão entre enemy e player
 function resetGame() {
+    player.points -= 10;
     allEnemies = [];
     for(var i = 0; i < 4; i++) {
         allEnemies.push(new Enemy());
