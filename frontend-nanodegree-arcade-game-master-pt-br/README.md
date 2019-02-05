@@ -1,5 +1,5 @@
-#Frogger Game
-##Nanodegree Udacity Web Front-End Avançado
+# Frogger Game
+## Nanodegree Udacity Web Front-End Avançado
 
 Primeiro projeto do Nanodegree de Web Front-End Avançado. Consiste em utilizar os recursos já fornecidos pelo curso para fazer um clone do jogo Frogger, construído com javascript orientado a objetos.
 
