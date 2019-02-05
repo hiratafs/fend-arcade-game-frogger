@@ -1,22 +1,22 @@
 // Inimigos que nosso jogador deve evitar
-function Enemy (x, y, velocidade) {
+function Enemy () {
+        var coordY = [60, 140, 220];
         this.sprite = "images/enemy-bug.png";
-        this.y = y;
-        this.x = 0;
-        this.velocidade = velocidade;
-
+        this.y = coordY[Math.floor(Math.random() * 3)];
+        this.x = 0;           
+        this.velocidade = Math.floor(Math.random() * 50 + 100);
 }
 
 Enemy.prototype.update = function (dt) {
         this.x += this.velocidade * dt;
 
-        /*Confere se o objeto criado a partir deste construtor
-        colide com o objeto construído pela classe Player */
-
         if(this.x > 505) {
             this.x = -50;
         }
-        
+
+        /*Confere se o objeto criado a partir deste construtor
+        colide com o objeto construído pela classe Player */
+          
         if(this.x + 102 > player.x &&
             this.x < player.x + 101 &&
             this.y < player.y + 85 &&
@@ -24,9 +24,8 @@ Enemy.prototype.update = function (dt) {
                 player.y = 400;
                 player.x = 200;
                 resetGame();
-        } 
+            } 
 }
-
 
 
 Enemy.prototype.render = function() {
@@ -43,10 +42,9 @@ class Player {
     }
 
     update() {
-        if(this.y <= -10) {
+        if(this.y <= -5) {
             this.y = 400;
-            resetGame();
-        }
+            }
     }
 
     render() {
@@ -76,16 +74,14 @@ class Player {
 
 }
 
+
 //Reseta o game quando há colisão entre enemy e player
 function resetGame() {
     allEnemies = [];
     for(var i = 0; i < 4; i++) {
-        var coordY = [60, 140, 220];
-        var posicaoY = coordY[Math.floor(Math.random() * 3)]
-        allEnemies.push(new Enemy(0, posicaoY, Math.floor(Math.random() * 400 + 100)));
+        allEnemies.push(new Enemy());
     }
-
-    //console.log("Acabou!")
+   //console.log("Acabou!")
 }
 
 
@@ -97,10 +93,9 @@ var allEnemies = [];
 
 //For loop para criar as instâncias dos inimigos e inseri-los na allEnemies
 for(var i = 0; i < 4; i++) {
-    var coordY = [60, 140, 220];
-    var posicaoY = coordY[Math.floor(Math.random() * 3)]
-    allEnemies.push(new Enemy(0, posicaoY, Math.floor(Math.random() * 400 + 100)));
+    allEnemies.push(new Enemy());
 }
+
 
 
 //Variáveis em array para a posição X do player
