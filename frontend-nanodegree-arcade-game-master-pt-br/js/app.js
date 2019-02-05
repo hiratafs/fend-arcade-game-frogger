@@ -44,7 +44,8 @@ class Player {
     update() {
         if(this.y <= -5) {
             this.y = 400;
-            }
+            elevaDificuldade();
+        }
     }
 
     render() {
@@ -74,6 +75,11 @@ class Player {
 
 }
 
+function elevaDificuldade() {
+    allEnemies.forEach( function() {
+        Enemy.velocidade += 10;
+    })
+}
 
 //Reseta o game quando há colisão entre enemy e player
 function resetGame() {
