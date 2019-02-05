@@ -1,3 +1,7 @@
 body {
     text-align: center;
 }
+
+div .placar {
+    background-color: greenyellow;
+}
