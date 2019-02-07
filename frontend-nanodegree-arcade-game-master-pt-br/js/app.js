@@ -1,4 +1,7 @@
 
+// function Characters () {
+
+// }
 
 // Inimigos que nosso jogador deve evitar
 function Enemy () {
@@ -18,31 +21,34 @@ Enemy.prototype.update = function (dt) {
 
         /*Confere se o objeto criado a partir deste construtor
         colide com o objeto construído pela classe Player */
-          
         this.checkCollision(this, player);
+        
 }
 
 //Método que checa as colisões entre os personagens
 Enemy.prototype.checkCollision = function(enemy, hero) {
     if(enemy.x + 70 > hero.x &&
         enemy.x < hero.x + 70 &&
-        enemy.y < hero.y + 85 &&
-        enemy.y + 86 > hero.y) {
-            hero.y = 400;
-            hero.x = 200;
-        }
-}
-
-//Reseta o game quando há colisão entre enemy e player
-Enemy.prototype.resetGame = function(hero) {
-    hero.y = 400;
-    allEnemies = [];
-    for(var i = 0; i < 4; i++) {
-        allEnemies.push(new Enemy());
+        enemy.y < hero.y + 60 &&
+        enemy.y + 60 > hero.y) {
+        this.resetGame(hero, allEnemies);
     }
-   //console.log("Acabou!")
+    
 }
 
+
+
+//Reseta o game 
+Enemy.prototype.resetGame = function(hero, arrayofEnemies) {
+        hero.y = 400;
+        hero.x = 200;
+    for(let enemy of arrayofEnemies) {
+        enemy["x"] = 0;
+        enemy["y"] = this.y;
+        enemy["velocidade"] = this.velocidade;
+    }
+
+}
 
 
 Enemy.prototype.render = function() {
@@ -62,7 +68,7 @@ class Player {
     update() {
         if(this.y <= -5) {
             this.y = 400;
-            }
+          }
     }
 
     render() {
@@ -102,6 +108,8 @@ var allEnemies = [];
 for(var i = 0; i < 4; i++) {
     allEnemies.push(new Enemy());
 }
+
+
 
 //Variáveis em array para a posição X do player
 var posicaoX = [0, 101, 202, 303, 404];
