@@ -82,7 +82,7 @@ var Engine = (function(global) {
      * dessa maneira ou não (também pode implementar a detecção de colisão
      * apenas nas próprias entidades, em seu arquivo app.js).
      */
-    function update(dt) {
+    function update(dt, player) {
         updateEntities(dt);
         // checkCollisions();
     }
@@ -96,11 +96,25 @@ var Engine = (function(global) {
      */
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
-            enemy.update(dt);
+            enemy.update(dt, player);
+            if(enemy.checkCollision(player)){
+                resetGame(player, allEnemies);
+            }
         });
         player.update();
     }
 
+    function resetGame(hero, arrayofEnemies) {
+        hero.x = 200;
+        hero.y = 400;
+        for(let enemy of arrayofEnemies) {
+            enemy["x"] = 0;
+            enemy["y"] = this.y;
+            enemy["velocidade"] = this.velocidade;
+        }
+    }
+
+    
     /* Esta função primeiro deseha o "nível do jogo" e, depois, chama a
      * função renderEntities. Lembre-se de que esta função é chamada a
      * cada "tique" do jogo (ou loop do mecanismo do jogo), pois é como os
@@ -169,6 +183,13 @@ var Engine = (function(global) {
     function reset() {
         // noop
     }
+
+    /* allEnemies.forEach(function(enemy) {
+        enemy.update(dt, player);
+        if (enemy.checkCollision(player)) {
+            resetGame(player, allEnemies);
+        }
+    }); */
 
     /* Vá em frente e carregue todas as imagens que sabemos que serão
      * necessárias para desenhar o nível do jogo. Depois, defina init como o
