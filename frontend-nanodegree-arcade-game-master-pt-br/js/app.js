@@ -4,11 +4,11 @@ function Enemy () {
         var coordY = [60, 140, 220];
         this.sprite = "images/enemy-bug.png";
         this.y = coordY[Math.floor(Math.random() * 3)];
-        this.x = 0;           
+        this.x = -50;           
         this.velocidade = Math.floor(Math.random() * 50 + 100);
 }
 
-Enemy.prototype.update = function (dt) {
+Enemy.prototype.update = function (dt, player) {
         this.x += this.velocidade * dt;
 
         if(this.x > 505) {
@@ -17,32 +17,25 @@ Enemy.prototype.update = function (dt) {
 
         /*Confere se o objeto criado a partir deste construtor
         colide com o objeto construído pela classe Player */
-        this.checkCollision(this, player);
+        this.checkCollision(player);
         
 }
 
 //Método que checa as colisões entre os personagens
-Enemy.prototype.checkCollision = function(enemy, hero) {
-    if(enemy.x + 70 > hero.x &&
-        enemy.x < hero.x + 70 &&
-        enemy.y < hero.y + 60 &&
-        enemy.y + 60 > hero.y) {
-        this.resetGame(hero, allEnemies);
-    }
-    
-}
-
-
-
-//Reseta o game 
-Enemy.prototype.resetGame = function(hero, arrayofEnemies) {
+Enemy.prototype.checkCollision = function(hero) {
+    if(this.x + 70 > hero.x &&
+        this.x < hero.x + 70 &&
+        this.y < hero.y + 60 &&
+        this.y + 60 > hero.y) {
         hero.y = 400;
         hero.x = 200;
-    for(let enemy of arrayofEnemies) {
-        enemy["x"] = 0;
-        enemy["y"] = this.y;
-        enemy["velocidade"] = this.velocidade;
+        this.resetVelocidade();
     }
+}
+
+Enemy.prototype.resetVelocidade = function() {
+    this.x = -50;
+    this.velocidade = Math.floor(Math.random() * 50 + 100);
 }
 
 
