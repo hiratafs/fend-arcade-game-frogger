@@ -1,8 +1,4 @@
 
-// function Characters () {
-
-// }
-
 // Inimigos que nosso jogador deve evitar
 function Enemy () {
         var coordY = [60, 140, 220];
@@ -47,7 +43,6 @@ Enemy.prototype.resetGame = function(hero, arrayofEnemies) {
         enemy["y"] = this.y;
         enemy["velocidade"] = this.velocidade;
     }
-
 }
 
 
@@ -68,11 +63,21 @@ class Player {
     update() {
         if(this.y <= -5) {
             this.y = 400;
-          }
+            this.updateGame(allEnemies);
+        }
     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    updateGame(arrayofEnemies){
+        var coordY = [60, 140, 220];
+        for(let enemy of arrayofEnemies) {
+            enemy["x"] = 0;
+            enemy["y"] = coordY[Math.floor(Math.random() * 3)];
+            enemy["velocidade"] += 10;
+        }
     }
 
     // Lógica da movimentação do player pelo canvas
